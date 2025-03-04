@@ -2,7 +2,7 @@ const http = require('http');
 const path = require('path');
 const fs = require('fs');
 const Koa = require('koa');
-const koaBody = require('koa-body').default;
+const { koaBody } = require('koa-body');
 const koaStatic = require('koa-static');
 const uuid = require('uuid');
 const app = new Koa();
@@ -18,14 +18,14 @@ app.use(async (ctx, next) => {
     return await next();
   }
 
-  const headers = {'Access-Control-Allow-Origin': '*', };
+  const headers = { 'Access-Control-Allow-Origin': '*', };
 
   if (ctx.request.method !== 'OPTIONS') {
-    ctx.response.set({...headers});
+    ctx.response.set({ ...headers });
     try {
       return await next();
     } catch (e) {
-      e.headers = {...e.headers, ...headers};
+      e.headers = { ...e.headers, ...headers };
       throw e;
     }
   }
@@ -35,12 +35,12 @@ app.use(async (ctx, next) => {
       ...headers,
       'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH',
     });
-    
+
     if (ctx.request.get('Access-Control-Request-Headers')) {
       ctx.response.set('Access-Control-Allow-Headers', ctx.request.get('Access-Control-Request-Headers'))
     }
-    
-    ctx.response.status = 204;  
+
+    ctx.response.status = 204;
   }
 });
 
@@ -62,13 +62,13 @@ router.get('/messages/unread', async (ctx, next) => {
   }
 
   ctx.response.body = responseMessage;
-  
+
   next();
 });
 
 app.use(router.routes()).use(router.allowedMethods());
 
-const port = process.env.PORT || 7070;
+const port = process.env.PORT || 9000;
 const server = http.createServer(app.callback())
 
 server.listen(port, (err) => {
@@ -78,4 +78,4 @@ server.listen(port, (err) => {
     return;
   }
   console.log('Server is listening to ' + port);
-});;
+});

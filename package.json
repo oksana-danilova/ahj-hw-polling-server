@@ -1,25 +1,20 @@
 {
   "name": "ahj-hw-polling-server",
   "version": "1.0.0",
-  "description": "[![Build status](https://ci.appveyor.com/api/projects/status/3nmnboqx2f2kdmos?svg=true)](https://ci.appveyor.com/project/oksana-danilova/ahj-hw-media)",
-  "homepage": "https://github.com/oksana-danilova/ahj-hw-polling-server#readme",
-  "bugs": {
-    "url": "https://github.com/oksana-danilova/ahj-hw-polling-server/issues"
-  },
+  "description": "",
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/oksana-danilova/ahj-hw-polling-server.git"
+    "type": "git"
   },
   "license": "ISC",
   "author": "oksana-danilova",
+  "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "prestart": "npm install",
     "start": "forever server.js",
     "watch": "forever -w server.js"
   },
   "dependencies": {
-    "forever": "^0.14.2",
+    "forever": "^4.0.3",
     "fs": "^0.0.1-security",
     "http-event-stream": "^0.2.0",
     "koa": "^2.14.2",
@@ -27,10 +22,13 @@
     "koa-combine-routers": "^4.0.2",
     "koa-router": "^12.0.0",
     "koa-static": "^5.0.0",
-    "uuid": "^9.0.1",
-    "ws": "^8.14.2"
+    "uuid": "^9.0.0",
+    "ws": "^8.13.0"
   },
   "devDependencies": {
-    "@faker-js/faker": "^8.1.0"
+    "@faker-js/faker": "^7.6.0"
+  },
+  "engines": {
+    "node": "22.11.0"
   }
 }
